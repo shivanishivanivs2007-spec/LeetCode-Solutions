@@ -1,0 +1,6 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+       rev=0
+       for n in nums:
+            rev=rev^n
+       return rev
