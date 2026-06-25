@@ -1,0 +1,29 @@
+class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        n=len(nums)
+        c1={}
+        c2=0
+        for i in range(k):
+            c2+=nums[i]
+            if nums[i] in c1:
+                c1[nums[i]]+=1
+            else:
+                c1[nums[i]]=1
+
+        ans=0
+        if(len(c1))==k:
+            ans=c2
+
+        for i in range(k,n):
+            c2-=nums[i-k]
+            c1[nums[i-k]]-=1
+            if c1[nums[i-k]]==0:
+                del c1[nums[i-k]]
+            c2+=nums[i]
+            if nums[i] in c1:
+                c1[nums[i]]+=1
+            else:
+                c1[nums[i]]=1
+            if len(c1)==k:
+                ans=max(ans,c2)
+        return ans

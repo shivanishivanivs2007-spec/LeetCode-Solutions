@@ -1,0 +1,17 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        left=0
+        maxi=0
+        c={}
+        for i in range(len(fruits)):
+            if fruits[i] in c:
+                c[fruits[i]]=c[fruits[i]]+1
+            else:
+                c[fruits[i]]=1
+            while len(c)>2:
+                c[fruits[left]]=c[fruits[left]]-1
+                if c[fruits[left]]==0:
+                    del c[fruits[left]]
+                left=left+1
+            maxi=max(maxi,i-left+1)    
+        return maxi            
