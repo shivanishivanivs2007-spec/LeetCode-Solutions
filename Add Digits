@@ -1,0 +1,9 @@
+class Solution:
+    def addDigits(self, num: int) -> int:
+       if num<10:
+            return num
+       def f(n):
+            if n==0:
+                return 0
+            return n%10+ f(n//10)
+       return self.addDigits(f(num))
